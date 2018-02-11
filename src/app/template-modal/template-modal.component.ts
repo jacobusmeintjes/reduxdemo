@@ -22,8 +22,8 @@ export class TemplateModalComponent implements OnInit {
   @ViewChild('content') _templateModal: ElementRef;
 
   @Input()
-  set modalState(_modalState: any) {
-    if (_modalState === this.modalName) {
+  set modalState(_state: any) {
+    if (_state === this.modalName) {
       this.openModal();
     } else if (this.modalRef) {
       this.closeModal();

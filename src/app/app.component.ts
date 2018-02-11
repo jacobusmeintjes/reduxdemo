@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 /*
 Import the root state in order to select parts of it.
@@ -15,11 +15,17 @@ import { Observable } from 'rxjs/Observable';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   public openenedModalName$: Observable<any>;
 
   constructor(private store: Store<fromRoot.AppState>) {
     this.openenedModalName$ = store.select(fromRoot.getLayoutOpenedModalName);
+  }
+
+  ngOnInit() {
+    this.openenedModalName$.subscribe(x => {
+        console.log('Something changed!!!');
+    });
   }
 
   handleOpenModal(modalName: string) {

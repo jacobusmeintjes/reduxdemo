@@ -39,4 +39,4 @@ Layout selector
 */
 export const getLayoutState = (state: AppState) => state.reducer.layout;
 
-export const getLayoutOpenedModalName = (state: AppState) => state.reducer.layout.openedModalName;
+export const getLayoutOpenedModalName = createSelector(getLayoutState, fromLayout.getOpenedModalName); //(state: AppState) => state.reducer.layout.openedModalName;
