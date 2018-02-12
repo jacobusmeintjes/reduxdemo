@@ -23,9 +23,7 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.openenedModalName$.subscribe(x => {
-        console.log('Something changed!!!');
-    });
+
   }
 
   handleOpenModal(modalName: string) {
