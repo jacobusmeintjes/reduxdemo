@@ -24,7 +24,7 @@ export class TemplateModalComponent implements OnInit {
   @Input()
   set modalState(_state: any) {
     if (_state === this.modalName) {
-      this.openModal();
+      this.open();
     } else if (this.modalRef) {
       this.closeModal();
     }
@@ -34,6 +34,15 @@ export class TemplateModalComponent implements OnInit {
   onCloseModal = new EventEmitter<any>();
 
   constructor(private modalService: NgbModal) {}
+
+  open(content) {
+    this.modalService.open(content).result.then((result) => {
+      this.closeResult = `Closed with: ${result}`;
+    }, (reason) => {
+      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+    });
+  }
+
 
   openModal() {
     this.modalRef = this.modalService.open(this._templateModal, {backdrop: 'static', keyboard: false});
